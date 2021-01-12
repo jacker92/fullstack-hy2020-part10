@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     infoItem: {
         paddingBottom: 5,
         flexWrap: 'wrap',
-        flexShrink: 1
+        flexShrink: 1,
+        fontFamily: theme.fonts.main
     },
     avatar: {
         width: 66,
@@ -29,14 +30,13 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         padding: 3,
-        fontSize: 12
+        fontSize: 12,
+        fontFamily: theme.fonts.main
     },
     header: {
         ...theme.text.primary,
+        fontFamily: theme.fonts.main,
         paddingBottom: 5
-    },
-    inner: {
-
     }
 });
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import theme from '../theme';
+import Text from './Text';
 import FormikTextInput from './FormikTextInput';
 
 const SignInForm = ({ onSubmit }) => {
@@ -11,7 +12,6 @@ const SignInForm = ({ onSubmit }) => {
             borderRadius: 5,
             padding: 20,
             height: 60
-
         },
         buttonTextStyle: {
             color: "white",
