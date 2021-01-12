@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         marginRight: 5
     },
     language: {
-        backgroundColor: '#0041C2',
+        backgroundColor: theme.colors.buttonPrimary,
         color: 'white',
         borderRadius: 5,
         paddingLeft: 10,
