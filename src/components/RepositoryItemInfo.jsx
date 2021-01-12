@@ -8,12 +8,14 @@ const styles = StyleSheet.create({
         padding: 5
     },
     flexItemInfo: {
-        flexGrow: 0,
         flexDirection: 'column',
-        alignItems: "flex-start"
+        alignItems: "flex-start",
+        width: "87%"
     },
     infoItem: {
-        paddingBottom: 5
+        paddingBottom: 5,
+        flexWrap: 'wrap',
+        flexShrink: 1
     },
     avatar: {
         width: 66,
@@ -32,6 +34,9 @@ const styles = StyleSheet.create({
     header: {
         ...theme.text.primary,
         paddingBottom: 5
+    },
+    inner: {
+
     }
 });
 
