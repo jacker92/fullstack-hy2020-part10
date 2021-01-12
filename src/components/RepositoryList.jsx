@@ -1,9 +1,12 @@
 import React from 'react';
-import { FlatList, View, StyleSheet, Text } from 'react-native';
+import { FlatList, View, StyleSheet } from 'react-native';
+import theme from '../theme';
+import RepositoryItem from './RepositoryItem';
 
 const styles = StyleSheet.create({
   separator: {
     height: 10,
+    backgroundColor: theme.colors.mainBackGround
   },
 });
 
@@ -65,20 +68,6 @@ const RepositoryList = () => {
         <RepositoryItem item={item} />
       )}
     />
-  );
-};
-
-const RepositoryItem = ({ item }) => {
-  return (
-    <View>
-      <Text>Full name: {item.fullName}{"\n"}</Text>
-      <Text>Description: {item.description}{"\n"}</Text>
-      <Text>Language: {item.language}{"\n"}</Text>
-      <Text>Stars: {item.stargazersCount}{"\n"}</Text>
-      <Text>Forks: {item.forksCount}{"\n"}</Text>
-      <Text>Reviews: {item.reviewCount}{"\n"}</Text>
-      <Text>Rating: {item.ratingAverage}{"\n"}</Text>
-    </View>
   );
 };
 
