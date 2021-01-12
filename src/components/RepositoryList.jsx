@@ -70,7 +70,7 @@ const RepositoryList = () => {
 
 const RepositoryItem = ({ item }) => {
   return (
-    <div>
+    <View>
       <Text>Full name: {item.fullName}{"\n"}</Text>
       <Text>Description: {item.description}{"\n"}</Text>
       <Text>Language: {item.language}{"\n"}</Text>
@@ -78,7 +78,7 @@ const RepositoryItem = ({ item }) => {
       <Text>Forks: {item.forksCount}{"\n"}</Text>
       <Text>Reviews: {item.reviewCount}{"\n"}</Text>
       <Text>Rating: {item.ratingAverage}{"\n"}</Text>
-    </div>
+    </View>
   );
 };
 
