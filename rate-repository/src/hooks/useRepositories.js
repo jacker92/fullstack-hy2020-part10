@@ -8,8 +8,6 @@ const useRepositories = () => {
         fetchPolicy: 'cache-and-network'
     });
 
-    console.log(data);
-
     if (loading) {
         return <View>Loading...</View>;
     }
