@@ -7,6 +7,7 @@ import { useParams } from "react-router-native";
 import { useQuery } from '@apollo/react-hooks';
 import { GET_REPOSITORY } from './../graphql/queries';
 import * as Linking from 'expo-linking';
+import { separators } from './../theme';
 
 const SingleRepository = () => {
     const id = useParams().id;
@@ -25,14 +26,26 @@ const SingleRepository = () => {
 
     const repository = data.repository;
     const reviews = repository.reviews.edges;
-    console.log("DAATA", repository);
     return (
         <View>
             <FlatList
+                ItemSeparatorComponent={
+                    () => (
+                        <View
+                            style={separators.listItemSeparator}
+                        />
+                    )
+                }
                 data={reviews}
-                renderItem={({ item }) => <ReviewItem review={item.node} />}
+                renderItem={({ item, separators }) => (
+                    <ReviewItem
+                        review={item.node}
+                        onShowUnderlay={separators.highlight}
+                        onHideUnderlay={separators.unhighlight} />
+                )}
                 keyExtractor={({ id }) => id}
-                ListHeaderComponent={() => <RepositoryItem item={repository} />}
+                ListHeaderComponent={() => <RepositoryItem
+                    item={repository} />}
             />
             <Button onSubmit={onSubmit} buttonText="Open in GitHub" />
         </View>

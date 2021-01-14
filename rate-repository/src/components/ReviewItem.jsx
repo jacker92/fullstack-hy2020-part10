@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import { textStyles } from '../theme';
 import { dateToFinnishFormat } from '../utils/dateConverter';
+import ReviewCircle from './ReviewCircle';
 
 const ReviewItem = ({ review }) => {
 
@@ -35,30 +36,6 @@ const ReviewItem = ({ review }) => {
             </View>
         </View>
     );
-};
-
-const ReviewCircle = ({ rating }) => {
-    const circle = {
-        width: 40,
-        height: 40,
-        borderRadius: 40 / 2,
-        borderWidth: 1,
-        borderColor: 'blue'
-    };
-
-    const text = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: 'blue',
-        height: 40
-    };
-
-    return (
-        <View style={circle}>
-            <Text style={text}>{rating}</Text>
-        </View>);
-
 };
 
 export default ReviewItem;

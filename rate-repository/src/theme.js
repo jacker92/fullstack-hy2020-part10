@@ -31,7 +31,7 @@ const theme = {
     fontWeights: {
         normal: '400',
         bold: '700',
-    },
+    }
 };
 
 export const textStyles = {
@@ -56,6 +56,13 @@ export const textStyles = {
         fontFamily: theme.fonts.main,
         paddingBottom: 5
     }
+};
+
+export const separators = {
+    listItemSeparator: {
+        height: 10,
+        backgroundColor: theme.colors.mainBackGround
+    },
 };
 
 export default theme;
