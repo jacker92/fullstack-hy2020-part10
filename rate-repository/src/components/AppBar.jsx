@@ -50,9 +50,14 @@ const AppBar = () => {
                 </Link>
                 {!data || !data.authorizedUser
                     ?
-                    <Link to="/signin">
-                        <Text style={styles.appBarText} >Sign in</Text>
-                    </Link>
+                    <>
+                        <Link to="/signin">
+                            <Text style={styles.appBarText} >Sign in</Text>
+                        </Link>
+                        <Link to="/signup">
+                            <Text style={styles.appBarText} >Sign up</Text>
+                        </Link>
+                    </>
                     :
                     <>
                         <Link to="createReview">

@@ -40,6 +40,7 @@ const SingleRepository = () => {
                 data={reviews}
                 renderItem={({ item, separators }) => (
                     <ReviewItem
+                        key={item.id}
                         review={item.node}
                         onShowUnderlay={separators.highlight}
                         onHideUnderlay={separators.unhighlight} />
