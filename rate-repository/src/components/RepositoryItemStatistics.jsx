@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItemStatistics = ({ item }) => {
+    if (!item) {
+        return <Text>Loading...</Text>;
+    }
+
     return (
         <View style={styles.flexContainer}>
             <View style={styles.flexItemStatistic}>

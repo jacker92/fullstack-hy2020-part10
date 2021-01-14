@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItemInfo = ({ item }) => {
+    if (!item) {
+        return <Text>Loading...</Text>;
+    }
+
     return (
         <View style={styles.flexContainer}>
             <View style={styles.flexContainer}>

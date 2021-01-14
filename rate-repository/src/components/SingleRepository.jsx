@@ -11,8 +11,9 @@ import { separators } from './../theme';
 
 const SingleRepository = () => {
     const id = useParams().id;
-    const { loading, data } = useQuery(GET_REPOSITORY, {
-        fetchPolicy: 'cache-and-network',
+
+    let { loading, data } = useQuery(GET_REPOSITORY, {
+        fetchPolicy: 'no-cache',
         variables: { id }
     });
 
@@ -25,7 +26,7 @@ const SingleRepository = () => {
     }
 
     const repository = data.repository;
-    const reviews = repository.reviews.edges;
+    const reviews = repository?.reviews?.edges;
     return (
         <View>
             <FlatList
