@@ -47,9 +47,9 @@ const RepositoryItemInfo = ({ item }) => {
                 <Image style={styles.avatar} source={{ uri: item.ownerAvatarUrl }} />
             </View>
             <View style={styles.flexItemInfo}>
-                <Text style={styles.header}>{item.fullName}</Text>
-                <Text style={styles.infoItem}>{item.description}</Text>
-                <Text style={styles.language}>{item.language}</Text>
+                <Text testID="repoItemFullName" style={styles.header}>{item.fullName}</Text>
+                <Text testID="repoItemDescription" style={styles.infoItem}>{item.description}</Text>
+                <Text testID="repoItemLanguage" style={styles.language}>{item.language}</Text>
             </View>
         </View>
     );
