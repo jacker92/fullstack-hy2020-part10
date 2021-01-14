@@ -5,18 +5,16 @@ import * as yup from 'yup';
 import useSignIn from './../hooks/useSignIn';
 import { useHistory } from "react-router-native";
 
-const SignIn = () => {
-    const [signIn] = useSignIn();
-    const history = useHistory();
+export const SignInContainer = ({ onSubmit }) => {
 
     const validationSchema = yup.object().shape({
         username: yup
             .string()
-            .length(4, 'Username needs to be at least six characters')
+            .min(4, 'Username needs to be at least 4 characters')
             .required('Username is required'),
         password: yup
             .string()
-            .length(5, 'Password must be at least 8 characters long')
+            .min(5, 'Password must be at least 5 characters long')
             .required('Password is required'),
     });
 
@@ -24,6 +22,23 @@ const SignIn = () => {
         username: '',
         password: ''
     };
+
+    return (
+        <Formik initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}>
+            {({ handleSubmit }) =>
+                <SignInForm
+                    onSubmit={handleSubmit}
+                />}
+        </Formik>
+    );
+};
+
+const SignIn = () => {
+    const [signIn] = useSignIn();
+    const history = useHistory();
+
     const onSubmit = async (values) => {
         const { username, password } = values;
         try {
@@ -34,15 +49,9 @@ const SignIn = () => {
             console.log(e);
         }
     };
+
     return (
-        <Formik initialValues={initialValues}
-            onSubmit={onSubmit}
-            validationSchema={validationSchema}>
-            {({ handleSubmit }) =>
-                <SignInForm
-                    onSubmit={handleSubmit}
-                />}
-        </Formik>
+        <SignInContainer onSubmit={onSubmit} />
     );
 };
 
