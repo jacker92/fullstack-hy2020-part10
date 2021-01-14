@@ -6,6 +6,7 @@ import { Route, Switch, Redirect } from 'react-router-native';
 import SignIn from './SignIn';
 import { useQuery } from '@apollo/react-hooks';
 import { USER_IS_AUTHORIZED } from '../graphql/queries';
+import SingleRepository from './SingleRepository';
 
 const styles = StyleSheet.create({
     container: {
@@ -20,6 +21,9 @@ const Main = () => {
         <View style={styles.container}>
             <AppBar loading={loading} data={data} refetch={refetch} />
             <Switch>
+                <Route path="/:id" exact>
+                    <SingleRepository />
+                </Route>
                 <Route path="/" exact>
                     <RepositoryList />
                 </Route>

@@ -48,7 +48,7 @@ const AppBar = () => {
                 <Link to="/">
                     <Text style={styles.appBarText}>Repositories</Text>
                 </Link>
-                {!data.authorizedUser
+                {!data || !data.authorizedUser
                     ?
                     <Link to="/signin">
                         <Text style={styles.appBarText} >Sign in</Text>
