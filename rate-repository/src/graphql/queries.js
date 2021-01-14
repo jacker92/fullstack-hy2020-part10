@@ -32,7 +32,21 @@ query GetRepository($id: ID!) {
       stargazersCount,
       ratingAverage,
       reviewCount,
-      ownerAvatarUrl
+      ownerAvatarUrl,
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
 `;

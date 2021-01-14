@@ -1,5 +1,6 @@
 import RepositoryItem from "./RepositoryItem";
-import { Text, View } from 'react-native';
+import ReviewItem from "./ReviewItem";
+import { FlatList, Text, View } from 'react-native';
 import React from 'react';
 import Button from './Button';
 import { useParams } from "react-router-native";
@@ -22,10 +23,17 @@ const SingleRepository = () => {
         return <Text>Loading</Text>;
     }
 
-    console.log("DAATA", data.repository);
+    const repository = data.repository;
+    const reviews = repository.reviews.edges;
+    console.log("DAATA", repository);
     return (
         <View>
-            <RepositoryItem item={data.repository} />
+            <FlatList
+                data={reviews}
+                renderItem={({ item }) => <ReviewItem review={item.node} />}
+                keyExtractor={({ id }) => id}
+                ListHeaderComponent={() => <RepositoryItem item={repository} />}
+            />
             <Button onSubmit={onSubmit} buttonText="Open in GitHub" />
         </View>
     );

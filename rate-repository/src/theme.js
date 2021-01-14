@@ -34,4 +34,28 @@ const theme = {
     },
 };
 
+export const textStyles = {
+    infoItem: {
+        paddingBottom: 5,
+        flexWrap: 'wrap',
+        flexShrink: 1,
+        fontFamily: theme.fonts.main
+    },
+    language: {
+        backgroundColor: theme.colors.buttonPrimary,
+        color: 'white',
+        borderRadius: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        padding: 3,
+        fontSize: 12,
+        fontFamily: theme.fonts.main
+    },
+    header: {
+        ...theme.text.primary,
+        fontFamily: theme.fonts.main,
+        paddingBottom: 5
+    }
+};
+
 export default theme;

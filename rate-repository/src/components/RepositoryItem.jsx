@@ -5,6 +5,7 @@ import RepositoryItemInfo from './RepositoryItemInfo';
 import RepositoryItemStatistics from './RepositoryItemStatistics';
 
 const RepositoryItem = ({ item }) => {
+    console.log("Repo", item);
     return (
         <View>
             <RepositoryItemInfo item={item} />
