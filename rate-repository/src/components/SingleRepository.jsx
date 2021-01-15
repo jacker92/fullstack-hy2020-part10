@@ -40,12 +40,11 @@ const SingleRepository = () => {
                 data={reviews}
                 renderItem={({ item, separators }) => (
                     <ReviewItem
-                        key={item.id}
+                        id={item.id}
                         review={item.node}
                         onShowUnderlay={separators.highlight}
                         onHideUnderlay={separators.unhighlight} />
                 )}
-                keyExtractor={({ id }) => id}
                 ListHeaderComponent={() => <RepositoryItem
                     item={repository} />}
             />
