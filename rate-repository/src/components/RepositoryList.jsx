@@ -5,10 +5,11 @@ import RepositoryItem from './RepositoryItem';
 import useRepositories from './../hooks/useRepositories';
 import { useHistory } from 'react-router-native';
 import { Picker } from '@react-native-picker/picker';
+import { Searchbar } from 'react-native-paper';
 
 const ItemSeparator = () => <View style={separators.listItemSeparator} />;
 
-export const RepositoryListContainer = ({ repositories, setFilter }) => {
+export const RepositoryListContainer = ({ repositories, setFilter, searchQuery, setSearchQuery }) => {
 
   const history = useHistory();
   const [pickerValue, setPickerValue] = useState('latest');
@@ -37,16 +38,23 @@ export const RepositoryListContainer = ({ repositories, setFilter }) => {
           </TouchableOpacity>
         )}
         ListHeaderComponent={() =>
-          <Picker
-            style={{ height: 50, fontSize: 16 }}
-            onValueChange={(value) => onPickerChange(value)}
-            mode='dropdown'
-            value={pickerValue}
-          >
-            <Picker.Item label='Latest repositories' value='latest' />
-            <Picker.Item label='Highest rated repositories' value='highestRated' />
-            <Picker.Item label='Lowest rated repositories' value='lowestRated' />
-          </Picker>
+          <>
+            <Searchbar
+              placeholder="Search"
+              onChangeText={(value) => setSearchQuery(value)}
+              value={searchQuery}
+            />
+            <Picker
+              style={{ height: 50, fontSize: 16 }}
+              onValueChange={(value) => onPickerChange(value)}
+              mode='dropdown'
+              value={pickerValue}
+            >
+              <Picker.Item label='Latest repositories' value='latest' />
+              <Picker.Item label='Highest rated repositories' value='highestRated' />
+              <Picker.Item label='Lowest rated repositories' value='lowestRated' />
+            </Picker>
+          </>
         }
       />
     </View>
@@ -55,6 +63,7 @@ export const RepositoryListContainer = ({ repositories, setFilter }) => {
 
 const RepositoryList = () => {
   const [filter, setFilter] = useState('latest');
+  const [searchQuery, setSearchQuery] = useState('');
   const data = useRepositories(filter);
 
   if (!data) {
@@ -62,7 +71,7 @@ const RepositoryList = () => {
       <Text>Loading....</Text>
     );
   }
-  return <RepositoryListContainer repositories={data.repositories} setFilter={setFilter} />;
+  return <RepositoryListContainer repositories={data.repositories} setFilter={setFilter} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
 };
 
 
