@@ -1,23 +1,23 @@
 import { gql } from 'apollo-boost';
 
 export const GET_REPOSITORIES = gql`
-query {
-    repositories {
-      edges {
-      node {
-      id,
-      fullName,
-      description,
-      language,
-      forksCount,
-      stargazersCount,
-      ratingAverage,
-      reviewCount,
-      ownerAvatarUrl
-        }
+query GetRepositories($orderBy: AllRepositoriesOrderBy!, $orderDirection: OrderDirection!) {
+  repositories (orderBy: $orderBy, orderDirection: $orderDirection) {
+    edges {
+    node {
+    id,
+    fullName,
+    description,
+    language,
+    forksCount,
+    stargazersCount,
+    ratingAverage,
+    reviewCount,
+    ownerAvatarUrl
       }
     }
   }
+}
 `;
 
 export const GET_REPOSITORY = gql`
