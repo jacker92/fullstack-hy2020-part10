@@ -23,7 +23,6 @@ const ReviewCircle = ({ rating }) => {
         <View style={circle}>
             <Text style={text}>{rating}</Text>
         </View>);
-
 };
 
 export default ReviewCircle;

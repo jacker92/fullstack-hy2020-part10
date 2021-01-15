@@ -1,55 +1,53 @@
 import RepositoryItem from "./RepositoryItem";
 import ReviewItem from "./ReviewItem";
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import React from 'react';
 import Button from './Button';
 import { useParams } from "react-router-native";
-import { useQuery } from '@apollo/react-hooks';
-import { GET_REPOSITORY } from './../graphql/queries';
 import * as Linking from 'expo-linking';
 import { separators } from './../theme';
+import useSingleRepository from "./../hooks/useSingleRepository";
 
 const SingleRepository = () => {
-    const id = useParams().id;
-
-    let { loading, data } = useQuery(GET_REPOSITORY, {
-        fetchPolicy: 'no-cache',
-        variables: { id }
+    const { repository, fetchMore } = useSingleRepository({
+        id: useParams().id,
+        pageSize: 10
     });
 
-    const onSubmit = () => {
-        Linking.openURL(data.repository.url);
+    const onEndReach = () => {
+        console.log("End reached!");
+        fetchMore();
     };
 
-    if (loading) {
-        return <Text>Loading</Text>;
-    }
+    const onSubmit = () => {
+        Linking.openURL(repository.url);
+    };
 
-    const repository = data.repository;
-    const reviews = repository?.reviews?.edges;
+    const itemSeparator = () => (
+        <View style={separators.listItemSeparator} />
+    );
+
+    const reviews = repository && repository.reviews
+        ? repository.reviews.edges.map(edge => edge.node)
+        : [];
+
     return (
-        <View>
+        <>
             <FlatList
-                ItemSeparatorComponent={
-                    () => (
-                        <View
-                            style={separators.listItemSeparator}
-                        />
-                    )
-                }
                 data={reviews}
-                renderItem={({ item, separators }) => (
-                    <ReviewItem
-                        id={item.id}
-                        review={item.node}
-                        onShowUnderlay={separators.highlight}
-                        onHideUnderlay={separators.unhighlight} />
-                )}
-                ListHeaderComponent={() => <RepositoryItem
-                    item={repository} />}
+                ItemSeparatorComponent={itemSeparator}
+                renderItem={({ item }) => <ReviewItem id={item.id} review={item} />}
+                keyExtractor={({ id }) => id}
+                onEndReached={onEndReach}
+                onEndReachedThreshold={0.5}
+                ListHeaderComponent={() =>
+                    <View>
+                        <RepositoryItem item={repository} />
+                    </View>
+                }
             />
             <Button onSubmit={onSubmit} buttonText="Open in GitHub" />
-        </View>
+        </>
     );
 };
 

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 });
 
 const Main = () => {
-    const { loading, data, refetch } = useQuery(USER_IS_AUTHORIZED,);
+    const { loading, data, refetch } = useQuery(USER_IS_AUTHORIZED);
     return (
         <View style={styles.container}>
             <AppBar loading={loading} data={data} refetch={refetch} />

@@ -56,7 +56,7 @@ export class RepositoryListContainer extends React.Component {
 
 const RepositoryList = () => {
   const [filter, setFilter] = useState('latest');
-  const [searchQuery, setSearchQuery] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchValue] = useDebounce(searchQuery, 500);
   const data = useRepositories(filter, searchValue);
   const history = useHistory();

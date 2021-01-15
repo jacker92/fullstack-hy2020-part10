@@ -25,16 +25,18 @@ const ReviewItem = ({ review }) => {
     });
 
     return (
-        <View style={styles.flexContainer}>
+        <>
             <View style={styles.flexContainer}>
-                <ReviewCircle rating={review.rating} />
+                <View style={styles.flexContainer}>
+                    <ReviewCircle rating={review.rating} />
+                </View>
+                <View style={styles.flexItemInfo}>
+                    <Text testID="reviewItemUserName" style={textStyles.header}>{review.user.username}</Text>
+                    <Text testID="reviewItemCreateDate" style={textStyles.infoItem}>{dateToFinnishFormat(review.createdAt)}</Text>
+                    <Text testID="reviewItemText" style={textStyles.infoItem}>{review.text}</Text>
+                </View>
             </View>
-            <View style={styles.flexItemInfo}>
-                <Text testID="reviewItemUserName" style={textStyles.header}>{review.user.username}</Text>
-                <Text testID="reviewItemCreateDate" style={textStyles.infoItem}>{dateToFinnishFormat(review.createdAt)}</Text>
-                <Text testID="reviewItemText" style={textStyles.infoItem}>{review.text}</Text>
-            </View>
-        </View>
+        </>
     );
 };
 
