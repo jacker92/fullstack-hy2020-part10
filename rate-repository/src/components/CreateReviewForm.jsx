@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import Button from './Button';
+import SubmitButton from './SubmitButton';
 import FormikTextInput from './FormikTextInput';
 
 const CreateReviewForm = ({ onSubmit }) => {
@@ -20,7 +20,7 @@ const CreateReviewForm = ({ onSubmit }) => {
             <FormikTextInput name="name" placeholder="Repository name" style={style.textField} />
             <FormikTextInput name="rating" placeholder="Rating between 0 and 100" style={style.textField} />
             <FormikTextInput name="review" placeholder="Review" style={style.textField} />
-            <Button onSubmit={onSubmit} buttonText="Create a review" />
+            <SubmitButton onSubmit={onSubmit} buttonText="Create a review" />
         </View>
     );
 };

@@ -69,6 +69,7 @@ query getAuthorizedUser($includeReviews: Boolean = false){
           id
           repository {
             fullName
+            url
           }
           text
           rating

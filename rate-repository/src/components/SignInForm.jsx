@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import Button from './Button';
+import SubmitButton from './SubmitButton';
 
 import FormikTextInput from './FormikTextInput';
 
@@ -20,7 +20,7 @@ const SignInForm = ({ onSubmit }) => {
         <View>
             <FormikTextInput name="username" placeholder="Username" style={style.textField} />
             <FormikTextInput name="password" placeholder="Password" style={style.textField} secureTextEntry={true} />
-            <Button onSubmit={onSubmit} buttonText="Sign in" />
+            <SubmitButton onSubmit={onSubmit} buttonText="Sign in" />
         </View>
     );
 };

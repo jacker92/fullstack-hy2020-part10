@@ -2,7 +2,7 @@ import RepositoryItem from "./RepositoryItem";
 import ReviewItem from "./ReviewItem";
 import { FlatList, View } from 'react-native';
 import React from 'react';
-import Button from './Button';
+import SubmitButton from './SubmitButton';
 import { useParams } from "react-router-native";
 import * as Linking from 'expo-linking';
 import { separators } from './../theme';
@@ -46,7 +46,7 @@ const SingleRepository = () => {
                     </View>
                 }
             />
-            <Button onSubmit={onSubmit} buttonText="Open in GitHub" />
+            <SubmitButton onSubmit={onSubmit} buttonText="Open in GitHub" />
         </>
     );
 };
