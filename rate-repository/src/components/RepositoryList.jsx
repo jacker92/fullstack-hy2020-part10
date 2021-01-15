@@ -9,10 +9,9 @@ import { Searchbar } from 'react-native-paper';
 
 const ItemSeparator = () => <View style={separators.listItemSeparator} />;
 
-export const RepositoryListContainer = ({ repositories, setFilter, searchQuery, setSearchQuery }) => {
+export const RepositoryListContainer = ({ repositories, filter, setFilter, searchQuery, setSearchQuery }) => {
 
   const history = useHistory();
-  const [pickerValue, setPickerValue] = useState('latest');
 
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
@@ -24,7 +23,6 @@ export const RepositoryListContainer = ({ repositories, setFilter, searchQuery, 
 
   const onPickerChange = (value) => {
     setFilter(value);
-    setPickerValue(value);
   };
 
   return (
@@ -48,7 +46,7 @@ export const RepositoryListContainer = ({ repositories, setFilter, searchQuery, 
               style={{ height: 50, fontSize: 16 }}
               onValueChange={(value) => onPickerChange(value)}
               mode='dropdown'
-              value={pickerValue}
+              value={filter}
             >
               <Picker.Item label='Latest repositories' value='latest' />
               <Picker.Item label='Highest rated repositories' value='highestRated' />
@@ -71,7 +69,7 @@ const RepositoryList = () => {
       <Text>Loading....</Text>
     );
   }
-  return <RepositoryListContainer repositories={data.repositories} setFilter={setFilter} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
+  return <RepositoryListContainer repositories={data.repositories} filter={filter} setFilter={setFilter} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
 };
 
 
