@@ -1,35 +1,69 @@
+/* eslint-disable no-case-declarations */
 import { useQuery } from '@apollo/react-hooks';
+import { useState } from 'react';
 import { GET_REPOSITORIES } from './../graphql/queries';
 
-const useRepositories = (filter) => {
+const useRepositories = (filter, newSearchTerm) => {
+    const [searchTerm, setSearchTerm] = useState('');
 
-    console.log("In use repositories", filter);
+    if (newSearchTerm !== searchTerm) {
+        setSearchTerm(newSearchTerm);
+    }
+
     switch (filter) {
         case "latest":
-            return useQuery(GET_REPOSITORIES, {
-                fetchPolicy: 'cache-and-network',
-                variables: {
-                    orderBy: "CREATED_AT",
-                    orderDirection: "DESC"
-                }
-            }).data;
+            return getLatest(searchTerm);
         case "highestRated":
-            return useQuery(GET_REPOSITORIES, {
-                fetchPolicy: 'cache-and-network',
-                variables: {
-                    orderBy: "RATING_AVERAGE",
-                    orderDirection: "DESC"
-                }
-            }).data;
+            return getHighestRated(searchTerm);
         case "lowestRated":
-            return useQuery(GET_REPOSITORIES, {
-                fetchPolicy: 'cache-and-network',
-                variables: {
-                    orderBy: "RATING_AVERAGE",
-                    orderDirection: "ASC"
-                }
-            }).data;
+            return getLowestRated(searchTerm);
     }
+};
+
+const getLowestRated = (searchTerm) => {
+    const options = {
+        fetchPolicy: 'cache-and-network',
+        variables: {
+            orderBy: "RATING_AVERAGE",
+            orderDirection: "ASC"
+        }
+    };
+
+    if (searchTerm && searchTerm.length > 0) {
+        options.variables.searchKeyword = searchTerm;
+    }
+    return useQuery(GET_REPOSITORIES, options).data;
+};
+
+const getHighestRated = (searchTerm) => {
+    const options = {
+        fetchPolicy: 'cache-and-network',
+        variables: {
+            orderBy: "RATING_AVERAGE",
+            orderDirection: "DESC"
+        }
+    };
+
+    if (searchTerm && searchTerm.length > 0) {
+        options.variables.searchKeyword = searchTerm;
+    }
+
+    return useQuery(GET_REPOSITORIES, options).data;
+};
+
+const getLatest = (searchTerm) => {
+    const options = {
+        fetchPolicy: 'cache-and-network',
+        variables: {
+            orderBy: "CREATED_AT",
+            orderDirection: "DESC"
+        }
+    };
+
+    if (searchTerm && searchTerm.length > 0) {
+        options.variables.searchKeyword = searchTerm;
+    }
+    return useQuery(GET_REPOSITORIES, options).data;
 };
 
 export default useRepositories;

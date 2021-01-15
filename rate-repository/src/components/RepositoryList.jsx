@@ -6,6 +6,7 @@ import useRepositories from './../hooks/useRepositories';
 import { useHistory } from 'react-router-native';
 import { Picker } from '@react-native-picker/picker';
 import { Searchbar } from 'react-native-paper';
+import { useDebounce } from 'use-debounce';
 
 const ItemSeparator = () => <View style={separators.listItemSeparator} />;
 
@@ -51,13 +52,13 @@ export class RepositoryListContainer extends React.Component {
       </View >
     );
   }
-
 }
 
 const RepositoryList = () => {
   const [filter, setFilter] = useState('latest');
-  const [searchQuery, setSearchQuery] = useState('');
-  const data = useRepositories(filter);
+  const [searchQuery, setSearchQuery] = useState(null);
+  const [searchValue] = useDebounce(searchQuery, 500);
+  const data = useRepositories(filter, searchValue);
   const history = useHistory();
 
   const onItemPressed = (id) => {
@@ -76,6 +77,5 @@ const RepositoryList = () => {
     setSearchQuery={setSearchQuery}
     onItemPressed={onItemPressed} />;
 };
-
 
 export default RepositoryList;
