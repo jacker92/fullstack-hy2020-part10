@@ -36,20 +36,18 @@ export class RepositoryListContainer extends React.Component {
 
   render() {
     return (
-      <View>
-        <FlatList
-          data={this.props.repositories
-            ? this.props.repositories.edges.map(edge => edge.node)
-            : []}
-          ItemSeparatorComponent={ItemSeparator}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => this.props.onItemPressed(item.id)}>
-              <RepositoryItem item={item} />
-            </TouchableOpacity>
-          )}
-          ListHeaderComponent={this.renderHeader}
-        />
-      </View >
+      <FlatList
+        data={this.props.repositories
+          ? this.props.repositories.edges.map(edge => edge.node)
+          : []}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => this.props.onItemPressed(item.id)}>
+            <RepositoryItem item={item} />
+          </TouchableOpacity>
+        )}
+        ListHeaderComponent={this.renderHeader}
+      />
     );
   }
 }

@@ -4,7 +4,7 @@ import { textStyles } from '../theme';
 import { dateToFinnishFormat } from '../utils/dateConverter';
 import ReviewCircle from './ReviewCircle';
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ review, title }) => {
 
     const styles = StyleSheet.create({
         flexContainer: {
@@ -24,19 +24,18 @@ const ReviewItem = ({ review }) => {
         }
     });
 
+    const reviewItemTitle = title ? title : review.user.username;
     return (
-        <>
+        <View style={styles.flexContainer}>
             <View style={styles.flexContainer}>
-                <View style={styles.flexContainer}>
-                    <ReviewCircle rating={review.rating} />
-                </View>
-                <View style={styles.flexItemInfo}>
-                    <Text testID="reviewItemUserName" style={textStyles.header}>{review.user.username}</Text>
-                    <Text testID="reviewItemCreateDate" style={textStyles.infoItem}>{dateToFinnishFormat(review.createdAt)}</Text>
-                    <Text testID="reviewItemText" style={textStyles.infoItem}>{review.text}</Text>
-                </View>
+                <ReviewCircle rating={review.rating} />
             </View>
-        </>
+            <View style={styles.flexItemInfo}>
+                <Text testID="reviewItemUserName" style={textStyles.header}>{reviewItemTitle}</Text>
+                <Text testID="reviewItemCreateDate" style={textStyles.infoItem}>{dateToFinnishFormat(review.createdAt)}</Text>
+                <Text testID="reviewItemText" style={textStyles.infoItem}>{review.text}</Text>
+            </View>
+        </View>
     );
 };
 

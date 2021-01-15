@@ -59,10 +59,34 @@ query GetRepository($id: ID!, $pageSize: Int!, $after: String) {
 `;
 
 export const USER_IS_AUTHORIZED = gql`
-{
+query getAuthorizedUser($includeReviews: Boolean = false){
   authorizedUser {
     id
     username
+    reviews @include(if: $includeReviews) {
+      edges {
+        node {
+          id
+          repository {
+            fullName
+          }
+          text
+          rating
+          createdAt
+          user {
+            id
+            username
+          }
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        totalCount
+        hasNextPage
+      }
+    }
   }
 }
 `;

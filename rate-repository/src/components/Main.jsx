@@ -9,6 +9,7 @@ import { USER_IS_AUTHORIZED } from '../graphql/queries';
 import SingleRepository from './SingleRepository';
 import CreateReview from './CreateReview';
 import SignUp from './SignUp';
+import MyReviews from './MyReviews';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,6 +26,9 @@ const Main = () => {
             <Switch>
                 <Route path="/createReview" exact>
                     <CreateReview />
+                </Route>
+                <Route path="/myReviews" exact>
+                    <MyReviews />
                 </Route>
                 <Route path="/signin" exact>
                     <SignIn />
